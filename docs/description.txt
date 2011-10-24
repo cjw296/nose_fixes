@@ -1,0 +1,8 @@
+============
+Nose Fixes
+============
+
+A plugin that changes `nose <>`__ to behave better.
+Hopefully, these changes will make their way back into nose...
+
+See the documentation for more details.

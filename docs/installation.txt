@@ -1,0 +1,17 @@
+Installation Instructions
+=========================
+
+If you want to experiment with nose_fixes, the easiest way to
+install it is::
+
+  easy_install nose-fixes
+
+Or, if you're using `zc.buildout`, just specify ``nose-fixes`` as a
+required egg.
+
+.. topic:: Python version requirements
+
+  This package requires Python 2.5 or above.
+
+  When installing with a version of Python lower than 2.6, you may see
+  compilation errors. These can safely be ignored.
