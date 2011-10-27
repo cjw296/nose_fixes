@@ -3,8 +3,12 @@ from nose.loader import TestLoader
 
 class BetterLoader(TestLoader):
 
+    def __init__(self, test_suite_func):
+        super(BetterLoader, self).__init__()
+        self.test_suite_func = test_suite_func
+        
     def loadTestsFromModule(self, module, path=None, discovered=False):
-        suite_func = getattr(module, 'test_suite', None)
+        suite_func = getattr(module, self.test_suite_func, None)
         if suite_func is not None:
             return suite_func()
         return super(BetterLoader, self).loadTestsFromModule(
@@ -28,4 +32,4 @@ class Plugin(NosePlugin):
         self.test_suite_func = options.test_suite_func
         
     def prepareTestLoader(self, loader):
-        return BetterLoader()
+        return BetterLoader(self.test_suite_func)
