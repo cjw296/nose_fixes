@@ -1,4 +1,15 @@
 Use
 ===
 
-XXX
+This plugin is enabled by default and will make `nose` respect modules
+that contain unit tests but define a function that returns the suite
+containing those tests rather than expecting the test runner to
+collect them directly.
+
+The name of this function is expected to be ``test_suite`` by default,
+if you require a different name to be used, please invoke nose as
+follows::
+
+  $ nosetests --test-suite-func=your_func_name
+
+

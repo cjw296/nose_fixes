@@ -7,7 +7,7 @@ install it is::
   easy_install nose-fixes
 
 Or, if you're using `zc.buildout`, just specify ``nose-fixes`` as a
-required egg.
+required egg in the part(s) where you use `nose`.
 
 .. topic:: Python version requirements
 

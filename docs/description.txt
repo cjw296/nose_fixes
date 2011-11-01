@@ -2,7 +2,7 @@
 Nose Fixes
 ============
 
-A plugin that changes `nose <>`__ to behave better.
+A plugin that changes `nose <http://readthedocs.org/docs/nose/>`__ to behave better.
 Hopefully, these changes will make their way back into nose...
 
 See the documentation for more details.
