@@ -3,12 +3,7 @@ import sys, os, pkginfo, datetime
 
 pkg_info = pkginfo.Develop(os.path.join(os.path.dirname(__file__),'..'))
 
-extensions = [
-    'sphinx.ext.autodoc',
-    'sphinx.ext.intersphinx'
-    ]
-
-intersphinx_mapping = {'http://docs.python.org': None}
+extensions = []
 
 # General
 source_suffix = '.txt'
