@@ -24,7 +24,10 @@ setup(
     packages=find_packages(),
     zip_safe=False,
     include_package_data=True,
-    install_requires=['nose'],
+    install_requires=[
+        'nose',
+        'setuptools', # so nose's EntryPointPluginManager gets used
+        ],
     entry_points = {
         'nose.plugins.0.10': [
             'nose_fixes = nose_fixes.plugin:Plugin'
