@@ -12,4 +12,6 @@ follows::
 
   $ nosetests --test-suite-func=your_func_name
 
-
+By default, it will also prevent docstrings in tests from being used as
+test names in the test run output. You can turn this behaviour off by
+passing the ``--show-docstrings`` option on the command-line.
