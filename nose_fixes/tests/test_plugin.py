@@ -27,3 +27,21 @@ class Tests(TestCase):
     def test_suite_name_override(self):
         self._parse_args('--test-suite-func=foo')
         self.assertEqual(self.plugin.test_suite_func, 'foo')
+
+    def test_show_docstrings_default(self):
+        self._parse_args()
+        self.assertFalse(self.plugin.show_docstrings)
+
+    def test_hide_docstrings_override(self):
+        self._parse_args('--show-docstrings')
+        self.assertTrue(self.plugin.show_docstrings)
+
+    def test_prepareTestResult_sets_descriptions(self):
+        thing = object()
+        self.plugin.show_docstrings = thing
+        class FakeResult(object):
+            def __init__(self):
+                self.descriptions = None
+        result = FakeResult()
+        self.plugin.prepareTestResult(result)
+        self.assertEqual(result.descriptions, thing)
