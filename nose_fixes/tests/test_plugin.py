@@ -35,13 +35,3 @@ class Tests(TestCase):
     def test_hide_docstrings_override(self):
         self._parse_args('--show-docstrings')
         self.assertTrue(self.plugin.show_docstrings)
-
-    def test_prepareTestResult_sets_descriptions(self):
-        thing = object()
-        self.plugin.show_docstrings = thing
-        class FakeResult(object):
-            def __init__(self):
-                self.descriptions = None
-        result = FakeResult()
-        self.plugin.prepareTestResult(result)
-        self.assertEqual(result.descriptions, thing)
