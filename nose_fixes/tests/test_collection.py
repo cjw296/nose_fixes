@@ -1,5 +1,6 @@
 from imp import new_module
 from nose.case import Test
+from nose.loader import TestLoader
 from unittest import TestCase
 
 class Tests(TestCase):
@@ -8,7 +9,8 @@ class Tests(TestCase):
         from nose_fixes.plugin import Plugin
         plugin = Plugin()
         plugin.test_suite_func = 'test_suite'
-        self.l = plugin.prepareTestLoader(None)
+        self.original_loader = TestLoader()
+        self.l = plugin.prepareTestLoader(self.original_loader)
         
     def test_suite(self):
 
@@ -37,3 +39,6 @@ class Tests(TestCase):
         test = tests[0]
         self.assertTrue(isinstance(test, Test))
         self.assertEqual(repr(test), 'Test(without_test_suite.test_sweet)')
+
+    def test_config_kept(self):
+        self.assertTrue(self.l.config is self.original_loader.config)

@@ -3,8 +3,8 @@ from nose.loader import TestLoader
 
 class BetterLoader(TestLoader):
 
-    def __init__(self, test_suite_func):
-        super(BetterLoader, self).__init__()
+    def __init__(self, test_suite_func, config):
+        super(BetterLoader, self).__init__(config)
         self.test_suite_func = test_suite_func
         
     def loadTestsFromModule(self, module, path=None, discovered=False):
@@ -37,7 +37,7 @@ class Plugin(NosePlugin):
         self.show_docstrings = options.show_docstrings
         
     def prepareTestLoader(self, loader):
-        return BetterLoader(self.test_suite_func)
+        return BetterLoader(self.test_suite_func, loader.config)
 
     def prepareTestResult(self, result):
         result.descriptions = self.show_docstrings
