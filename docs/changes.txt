@@ -1,6 +1,13 @@
 Changes
 =======
 
+1.1 (18 Nov 2011)
+-------------------------
+
+- Add the :option:`--show-docstrings` option.
+
+  Thanks to Christian Muirhead for the implementation.
+ 
 1.0 (01 Nov 2011)
 -------------------------
 
