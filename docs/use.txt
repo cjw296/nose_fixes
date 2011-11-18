@@ -1,17 +1,24 @@
-Use
-===
+Plugin Options
+==============
 
-This plugin is enabled by default and will make `nose` respect modules
-that contain unit tests but define a function that returns the suite
-containing those tests rather than expecting the test runner to
-collect them directly.
+This plugin is enabled once installed and provides the following
+options for making `nose` behave a bit better:
 
-The name of this function is expected to be ``test_suite`` by default,
-if you require a different name to be used, please invoke nose as
-follows::
+.. option:: --test-suite-func <test_suite>
 
-  $ nosetests --test-suite-func=your_func_name
+  This option makes `nose` respect modules
+  that contain unit tests but define a function that returns the suite
+  containing those tests rather than expecting the test runner to
+  collect them directly.
 
-By default, it will also prevent docstrings in tests from being used as
-test names in the test run output. You can turn this behaviour off by
-passing the ``--show-docstrings`` option on the command-line.
+  The name of this function is expected to be ``test_suite`` by default,
+  if you require a different name to be used, please invoke nose as
+  follows::
+
+    $ nosetests --test-suite-func=your_func_name
+
+.. option:: --show-docstrings
+
+  By default, this plugin prevents docstrings in tests from being used as
+  test names in the test run output. You can turn this behaviour off by
+  passing the ``--show-docstrings`` option on the command-line.
