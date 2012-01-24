@@ -1,16 +1,31 @@
+from nose.case import Test
 from nose.plugins import Plugin as NosePlugin
 from nose.loader import TestLoader
+from unittest import TestCase, TestSuite
 
 class BetterLoader(TestLoader):
 
     def __init__(self, test_suite_func, config):
         super(BetterLoader, self).__init__(config)
         self.test_suite_func = test_suite_func
-        
+
     def loadTestsFromModule(self, module, path=None, discovered=False):
         suite_func = getattr(module, self.test_suite_func, None)
         if suite_func is not None:
-            return suite_func()
+            to_process = list(suite_func())
+            suite = self.suiteClass([])
+            for entity in to_process:
+                if isinstance(entity, TestCase):
+                    suite.addTest(entity)
+                elif isinstance(entity, TestSuite):
+                    to_process.extend(entity)
+                else:
+                    raise TypeError(
+                        "Don't know what to do with %r (%r)" % (
+                            entity, type(entity)
+                            ))
+            return suite
+        
         return super(BetterLoader, self).loadTestsFromModule(
             module, path, discovered
             )
