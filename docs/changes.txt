@@ -1,6 +1,13 @@
 Changes
 =======
 
+1.2 (24 Jan 2012)
+-------------------------
+
+- Fix :func:`test_suite` handling to unpack the returned suite, which
+  may be nested, into the correct :mod:`nose` suite and test wrapping
+  such that more plugins work correctly.
+
 1.1 (18 Nov 2011)
 -------------------------
 
