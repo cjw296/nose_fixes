@@ -4,6 +4,8 @@ from nose.suite import ContextSuite
 from nose.loader import TestLoader
 from unittest import TestCase, TestSuite, makeSuite
 
+from nose_fixes.compat import PY2
+
 class Tests(TestCase):
 
     def setUp(self):
@@ -64,13 +66,18 @@ class Tests(TestCase):
         mod = new_module('with_test_suite')
         mod.test_suite = test_suite
 
+        if PY2:
+            msg = "(<class 'nose_fixes.tests.test_collection.dodgy'>)"
+        else:
+            msg = ("(<class 'nose_fixes.tests.test_collection.Tests."
+                   "test_suite_returns_something_odd.<locals>.dodgy'>)")
+            
         try:
             self.l.loadTestsFromModule(mod)
-        except TypeError, e:
+        except TypeError as e:
             self.assertEqual(
                 str(e),
-                "Don't know what to do with <dodgy> "
-                "(<class 'nose_fixes.tests.test_collection.dodgy'>)"
+                "Don't know what to do with <dodgy> " + msg
                 )
         else:
             self.fail('No exception raised!')
