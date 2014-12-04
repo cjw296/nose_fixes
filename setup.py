@@ -28,6 +28,9 @@ setup(
         'nose',
         'setuptools', # so nose's EntryPointPluginManager gets used
         ],
+    extras_require = dict(
+        test = ['testfixtures']
+    ),
     entry_points = {
         'nose.plugins.0.10': [
             'nose_fixes = nose_fixes.plugin:Plugin'
