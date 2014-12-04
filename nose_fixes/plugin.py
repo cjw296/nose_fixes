@@ -1,8 +1,11 @@
+from logging import getLogger
 from unittest import TestCase, TestSuite
+from os.path import exists, splitext
 
 from nose.plugins import Plugin as NosePlugin
 from nose.loader import TestLoader
 
+logger = getLogger('nose_fixes')
 
 class BetterLoader(TestLoader):
 
@@ -11,6 +14,14 @@ class BetterLoader(TestLoader):
         self.test_suite_func = test_suite_func
 
     def loadTestsFromModule(self, module, path=None, discovered=False):
+        module_path = getattr(module, '__file__', None)
+        if module_path:
+            expected_py_path = splitext(module_path)[0]+'.py'
+            if not exists(expected_py_path):
+                print (module_path, expected_py_path)
+                logger.warn('Ignoring orphaned compiled module: %s', module_path)
+                return self.suiteClass([])
+        # print (module, module, path)
         suite_func = getattr(module, self.test_suite_func, None)
         if suite_func is not None:
             to_process = list(suite_func())

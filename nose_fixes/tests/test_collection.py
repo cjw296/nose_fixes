@@ -96,3 +96,7 @@ class Tests(TestCase):
 
     def test_config_kept(self):
         self.assertTrue(self.l.config is self.original_loader.config)
+
+    def test_py_without_pyc(self):
+        pass
+
