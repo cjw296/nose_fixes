@@ -1,10 +1,9 @@
-from imp import new_module
-from nose.case import Test
-from nose.core import TestProgram
-from nose.loader import TestLoader
-from nose.plugins import PluginTester 
-from nose_fixes.plugin import Plugin
 from unittest import TestCase, makeSuite
+
+from nose.plugins import PluginTester
+
+from nose_fixes.plugin import Plugin
+
 
 class Tests(TestCase):
 

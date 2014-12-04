@@ -1,7 +1,8 @@
-from nose.case import Test
+from unittest import TestCase, TestSuite
+
 from nose.plugins import Plugin as NosePlugin
 from nose.loader import TestLoader
-from unittest import TestCase, TestSuite
+
 
 class BetterLoader(TestLoader):
 
